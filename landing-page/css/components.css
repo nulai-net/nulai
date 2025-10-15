@@ -1,0 +1,155 @@
+/* ==============================================
+   NULAI - Component Styles
+   Reusable UI components
+   ============================================== */
+
+/* This file intentionally lean - main components defined in main.css and animations.css */
+/* Additional micro-components and utilities */
+
+/* ===== UTILITY CLASSES ===== */
+.text-gradient {
+    background: linear-gradient(135deg, var(--primary-orange), var(--accent-gold));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.text-glow {
+    text-shadow: 0 0 30px rgba(255, 107, 53, 0.5);
+}
+
+.blur-in {
+    filter: blur(10px);
+    opacity: 0;
+    transition: filter 1s var(--ease-smooth), opacity 1s var(--ease-smooth);
+}
+
+.blur-in.visible {
+    filter: blur(0);
+    opacity: 1;
+}
+
+/* ===== GRID OVERLAY (DEV HELPER) ===== */
+.dev-grid {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 10000;
+    display: none;
+}
+
+.dev-grid.active {
+    display: block;
+}
+
+.dev-grid::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: repeating-linear-gradient(
+        0deg,
+        rgba(255, 107, 53, 0.1) 0px,
+        transparent 1px,
+        transparent 100px,
+        rgba(255, 107, 53, 0.1) 101px
+    ),
+    repeating-linear-gradient(
+        90deg,
+        rgba(255, 107, 53, 0.1) 0px,
+        transparent 1px,
+        transparent 100px,
+        rgba(255, 107, 53, 0.1) 101px
+    );
+}
+
+/* ===== SELECTION STYLES ===== */
+::selection {
+    background: var(--primary-orange);
+    color: var(--bg-black);
+}
+
+::-moz-selection {
+    background: var(--primary-orange);
+    color: var(--bg-black);
+}
+
+/* ===== SCROLLBAR STYLES ===== */
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-dark);
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, var(--primary-orange), var(--accent-gold));
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, var(--primary-orange-bright), var(--accent-amber));
+}
+
+/* Firefox */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: var(--primary-orange) var(--bg-dark);
+}
+
+/* ===== ACCESSIBILITY ===== */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
+.skip-to-content {
+    position: absolute;
+    top: -100px;
+    left: 0;
+    background: var(--primary-orange);
+    color: var(--bg-black);
+    padding: 1rem 2rem;
+    border-radius: 0 0 8px 0;
+    font-weight: 600;
+    z-index: 10001;
+    transition: top 0.3s var(--ease-smooth);
+}
+
+.skip-to-content:focus {
+    top: 0;
+}
+
+/* ===== PRINT STYLES ===== */
+@media print {
+    .cursor,
+    .loading-screen,
+    .noise-overlay,
+    .particle-canvas,
+    .fluid-canvas,
+    .hero-scroll-indicator,
+    .cta-background {
+        display: none !important;
+    }
+
+    body {
+        background: white;
+        color: black;
+    }
+
+    .section-padding {
+        padding: 2rem 0;
+    }
+}
